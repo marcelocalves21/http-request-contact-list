@@ -15,9 +15,47 @@ const getState = ({ getStore, setStore }) => {
 						getStore(setStore({ contacts: result }));
 					});
 			},
-			updateApiContact: index => {
-				let upCont = getStore().contacts[index];
-				console.log(upCont);
+			addApiContact: (fullName, email, phone, address) => {
+				fetch("https://assets.breatheco.de/apis/fake/contact/", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({
+						full_name: fullName,
+						email: email,
+						agenda_slug: "marcelo21",
+						address: address,
+						phone: phone
+					})
+				}).then(() => {
+					fetch("https://assets.breatheco.de/apis/fake/contact/agenda/marcelo21")
+						.then(response => response.json())
+						.then(result => {
+							getStore(setStore({ contacts: result }));
+						});
+				});
+			},
+			updateApiContact: (id, fullName, email, phone, address) => {
+				fetch(`https://assets.breatheco.de/apis/fake/contact/${id}`, {
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({
+						full_name: fullName,
+						email: email,
+						agenda_slug: "marcelo21",
+						address: address,
+						phone: phone
+					})
+				}).then(() => {
+					fetch("https://assets.breatheco.de/apis/fake/contact/agenda/marcelo21")
+						.then(response => response.json())
+						.then(result => {
+							getStore(setStore({ contacts: result }));
+						});
+				});
 			}
 		}
 	};

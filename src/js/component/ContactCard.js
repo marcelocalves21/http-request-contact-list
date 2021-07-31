@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import MikePhoto from "../../img/m101.jpg";
 import { Context } from "../store/appContext";
@@ -9,6 +9,7 @@ export const ContactCard = ({ element, index, onDelete }) => {
 		//initialize state here
 	});
 	const { store, actions } = useContext(Context);
+	let history = useHistory();
 
 	return (
 		<li className="list-group-item">
@@ -18,8 +19,12 @@ export const ContactCard = ({ element, index, onDelete }) => {
 				</div>
 				<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 					<div className=" float-right">
-						<button className="btn">
-							<i className="fas fa-pencil-alt mr-3" onClick={actions.updateApiContact(index)} />
+						<button
+							className="btn"
+							onClick={() => {
+								history.push("/edit");
+							}}>
+							<i className="fas fa-pencil-alt mr-3" />
 						</button>
 						<button className="btn" onClick={() => onDelete()}>
 							<i className="fas fa-trash-alt" />
