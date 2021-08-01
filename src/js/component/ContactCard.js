@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import MikePhoto from "../../img/m101.jpg";
 import { Context } from "../store/appContext";
 
-export const ContactCard = ({ element, index, onDelete }) => {
+export const ContactCard = ({ element, index, onDelete, match }) => {
 	const [state, setState] = useState({
 		//initialize state here
 	});
@@ -18,14 +18,12 @@ export const ContactCard = ({ element, index, onDelete }) => {
 					<img src={MikePhoto} alt="Mike Anamendolla" className="rounded-circle mx-auto d-block img-fluid" />
 				</div>
 				<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
-					<div className=" float-right">
-						<button
-							className="btn"
-							onClick={() => {
-								history.push("/edit");
-							}}>
-							<i className="fas fa-pencil-alt mr-3" />
-						</button>
+					<div className="float-right">
+						<Link to={"/edit/" + index}>
+							<button className="btn">
+								<i className="fas fa-pencil-alt mr-3" />
+							</button>
+						</Link>
 						<button className="btn" onClick={() => onDelete()}>
 							<i className="fas fa-trash-alt" />
 						</button>
@@ -61,6 +59,7 @@ export const ContactCard = ({ element, index, onDelete }) => {
  * your component's properties
  **/
 ContactCard.propTypes = {
+	match: PropTypes.object,
 	element: PropTypes.object,
 	index: PropTypes.number,
 	onDelete: PropTypes.func

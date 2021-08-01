@@ -1,14 +1,16 @@
 import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
+import PropTypes from "prop-types";
 
-export const AddContact = () => {
+export const EditContact = props => {
 	const { store, actions } = useContext(Context);
 	const [fullName, setFullName] = useState("");
 	const [email, setEmail] = useState("");
 	const [phone, setPhone] = useState("");
 	const [address, setAddress] = useState("");
 	let history = useHistory();
+	let edit = store.contacts[props.match.params.index];
 	return (
 		<div className="container">
 			<div>
@@ -20,6 +22,7 @@ export const AddContact = () => {
 							type="text"
 							className="form-control"
 							placeholder="Full Name"
+							defaultValue={edit.fullName}
 							onChange={e => setFullName(e.target.value)}
 						/>
 					</div>
@@ -29,6 +32,7 @@ export const AddContact = () => {
 							type="email"
 							className="form-control"
 							placeholder="Enter email"
+							defaultValue={edit.email}
 							onChange={e => setEmail(e.target.value)}
 						/>
 					</div>
@@ -38,6 +42,7 @@ export const AddContact = () => {
 							type="phone"
 							className="form-control"
 							placeholder="Enter phone"
+							defaultValue={edit.phone}
 							onChange={e => setPhone(e.target.value)}
 						/>
 					</div>
@@ -47,6 +52,7 @@ export const AddContact = () => {
 							type="text"
 							className="form-control"
 							placeholder="Enter address"
+							defaultValue={edit.address}
 							onChange={e => setAddress(e.target.value)}
 						/>
 					</div>
@@ -66,4 +72,8 @@ export const AddContact = () => {
 			</div>
 		</div>
 	);
+};
+
+EditContact.propTypes = {
+	match: PropTypes.object
 };
