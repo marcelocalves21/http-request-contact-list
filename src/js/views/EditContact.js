@@ -22,7 +22,7 @@ export const EditContact = props => {
 							type="text"
 							className="form-control"
 							placeholder="Full Name"
-							defaultValue={edit.fullName}
+							defaultValue={edit.full_name}
 							onChange={e => setFullName(e.target.value)}
 						/>
 					</div>
@@ -60,7 +60,7 @@ export const EditContact = props => {
 						type="button"
 						className="btn btn-primary form-control"
 						onClick={() => {
-							actions.addApiContact(fullName, email, phone, address);
+							actions.updateApiContact(edit.id, fullName, email, phone, address);
 							history.push("/");
 						}}>
 						save

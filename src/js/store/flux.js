@@ -56,6 +56,17 @@ const getState = ({ getStore, setStore }) => {
 							getStore(setStore({ contacts: result }));
 						});
 				});
+			},
+			deleteApiContact: id => {
+				fetch(`https://assets.breatheco.de/apis/fake/contact/${id}`, {
+					method: "DELETE"
+				}).then(() => {
+					fetch("https://assets.breatheco.de/apis/fake/contact/agenda/marcelo21")
+						.then(response => response.json())
+						.then(result => {
+							getStore(setStore({ contacts: result }));
+						});
+				});
 			}
 		}
 	};
