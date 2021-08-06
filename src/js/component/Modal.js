@@ -28,7 +28,7 @@ export const Modal = props => {
 						)}
 					</div>
 					<div className="modal-body">
-						<p>Warning: unknown consequences after this point... Kidding!</p>
+						<p>Do you want to delete this contact?</p>
 					</div>
 					<div className="modal-footer">
 						<button
@@ -36,13 +36,16 @@ export const Modal = props => {
 							className="btn btn-primary"
 							onClick={() => props.onClose()}
 							data-dismiss="modal">
-							OCancel
+							Cancel
 						</button>
 						<button
 							type="button"
 							className="btn btn-danger"
 							data-dismiss="modal"
-							onClick={() => actions.deleteApiContact(props.id)}>
+							onClick={() => {
+								actions.deleteApiContact(props.id);
+								props.onClose();
+							}}>
 							Delete
 						</button>
 					</div>

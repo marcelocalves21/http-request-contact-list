@@ -55,11 +55,11 @@ export const AddContact = () => {
 						className="btn btn-primary form-control"
 						onClick={() => {
 							actions.addApiContact(fullName, email, phone, address);
-							history.push("/");
+							history.push("/contacts");
 						}}>
 						save
 					</button>
-					<Link className="mt-3 w-100 text-center" to="/">
+					<Link className="mt-3 w-100 text-center" to="/contacts">
 						or get back to contacts
 					</Link>
 				</form>

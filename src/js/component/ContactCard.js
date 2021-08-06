@@ -30,7 +30,7 @@ export const ContactCard = ({ element, index, onDelete, match }) => {
 									<i className="fas fa-pencil-alt mr-3" />
 								</button>
 							</Link>
-							<button className="btn" onClick={() => onDelete(() => setState({ showModal: true }))}>
+							<button className="btn" onClick={() => setState({ showModal: true })}>
 								<i className="fas fa-trash-alt" />
 							</button>
 						</div>
@@ -57,7 +57,7 @@ export const ContactCard = ({ element, index, onDelete, match }) => {
 					</div>
 				</div>
 			</li>
-			<Modal show={state.showModal} onClose={() => setState({ showModal: false })} id={element} />
+			<Modal show={state.showModal} onClose={() => setState({ showModal: false })} id={element.id} />
 		</>
 	);
 };
